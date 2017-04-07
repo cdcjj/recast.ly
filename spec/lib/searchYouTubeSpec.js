@@ -7,6 +7,7 @@ var getURLSearchParams = function(url) {
       map[key] = value;
       return map;
     }, {});
+
 };
 
 var hasSameShape = function(objectOne, objectTwo) {
@@ -51,12 +52,11 @@ describe('searchYouTube', function() {
 
   it('should send a GET request', function() {
     searchYouTube({}, () => {});
-
     expect(requests[0].method).to.equal('GET');
   });
 
   it('should accept `key`, `query`, and `max` options and send them in GET request', function() {
-    searchYouTube({ key: 'API_KEY', query: 'cats', max: 10 }, () => {});
+    searchYouTube({ key: 'API_KEY', query: 'cats', max: 10 });
 
     var params = getURLSearchParams(requests[0].url);
     expect(params.key).to.equal('API_KEY');
