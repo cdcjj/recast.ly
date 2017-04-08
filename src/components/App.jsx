@@ -3,10 +3,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentVideo: null,
-      videos: exampleVideoData
+      videos: [],
     };
 
     this.renderVideo = this.renderVideo.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      videos: 'ma',
+    }, console.log(this.state.videos));
   }
 
   renderVideo(video) {
