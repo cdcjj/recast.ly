@@ -3,7 +3,10 @@ var searchYouTube = (options, callback) => {
     url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${options.query}&key=${options.key}&maxResults=${options.max}&type=video&statusembeddable=true`,
     success: function(videoList) {
       console.log('success');
-      callback(videoList.items);
+      console.log('query string in searchYouTube: ', options.query);
+      if (callback !== undefined) {
+        return callback(videoList.items);
+      }
 
     }, 
     fail: function(e) {
@@ -11,5 +14,7 @@ var searchYouTube = (options, callback) => {
     }
   });
 };
+
+window.debounceSearch = _.debounce(searchYouTube, 2000);
 
 window.searchYouTube = searchYouTube;
